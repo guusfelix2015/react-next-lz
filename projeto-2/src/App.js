@@ -1,28 +1,18 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
-import { useState } from 'react';
 
 function App() {
-  const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
-  const reverseClass = reverse ? 'reverse' : '';
 
-  const increment = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
+  // Executa toda vez que o counter atualiza
+  useEffect(() => {
+    console.log('component update', counter);
+  }, [counter]);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Counter {counter}</h1>
-        <img src={logo} className={`App-logo ${reverseClass}`} alt="logo" />
-        <button type="button" onClick={() => setReverse(!reverse)}>
-          Reverse
-        </button>
-        <button type="button" onClick={increment}>
-          Incrementar
-        </button>
-      </header>
+      <h1>Contador: {counter}</h1>
+      <button onClick={() => setCounter(counter + 1)}>+</button>
     </div>
   );
 }
